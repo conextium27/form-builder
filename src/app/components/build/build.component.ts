@@ -14,7 +14,6 @@ export class BuildComponent implements OnInit {
     }
 
     public ngOnInit() {
-
         $(document).ready(function () {
             $(".form_bal_title").draggable({
                 helper: function () {
@@ -28,48 +27,48 @@ export class BuildComponent implements OnInit {
                 },
                 connectToSortable: ".form_builder_area"
             });
-            $(".form_bal_textarea").draggable({
-                helper: function () {
-                    return getTextAreaFieldHTML();
-                },
-                connectToSortable: ".form_builder_area"
-            });
-            $(".form_bal_number").draggable({
-                helper: function () {
-                    return getNumberFieldHTML();
-                },
-                connectToSortable: ".form_builder_area"
-            });
-            $(".form_bal_email").draggable({
-                helper: function () {
-                    return getEmailFieldHTML();
-                },
-                connectToSortable: ".form_builder_area"
-            });
-            $(".form_bal_password").draggable({
-                helper: function () {
-                    return getPasswordFieldHTML();
-                },
-                connectToSortable: ".form_builder_area"
-            });
-            $(".form_bal_date").draggable({
-                helper: function () {
-                    return getDateFieldHTML();
-                },
-                connectToSortable: ".form_builder_area"
-            });
+            // $(".form_bal_textarea").draggable({
+            //     helper: function () {
+            //         return getTextAreaFieldHTML();
+            //     },
+            //     connectToSortable: ".form_builder_area"
+            // });
+            // $(".form_bal_number").draggable({
+            //     helper: function () {
+            //         return getNumberFieldHTML();
+            //     },
+            //     connectToSortable: ".form_builder_area"
+            // });
+            // $(".form_bal_email").draggable({
+            //     helper: function () {
+            //         return getEmailFieldHTML();
+            //     },
+            //     connectToSortable: ".form_builder_area"
+            // });
+            // $(".form_bal_password").draggable({
+            //     helper: function () {
+            //         return getPasswordFieldHTML();
+            //     },
+            //     connectToSortable: ".form_builder_area"
+            // });
+            // $(".form_bal_date").draggable({
+            //     helper: function () {
+            //         return getDateFieldHTML();
+            //     },
+            //     connectToSortable: ".form_builder_area"
+            // });
             $(".form_bal_button").draggable({
                 helper: function () {
                     return getButtonFieldHTML();
                 },
                 connectToSortable: ".form_builder_area"
             });
-            $(".form_bal_select").draggable({
-                helper: function () {
-                    return getSelectFieldHTML();
-                },
-                connectToSortable: ".form_builder_area"
-            });
+            // $(".form_bal_select").draggable({
+            //     helper: function () {
+            //         return getSelectFieldHTML();
+            //     },
+            //     connectToSortable: ".form_builder_area"
+            // });
             $(".form_bal_radio").draggable({
                 helper: function () {
                     return getRadioFieldHTML();
@@ -85,7 +84,8 @@ export class BuildComponent implements OnInit {
         
             $(".form_builder_area").sortable({
                 cursor: 'move',
-                placeholder: 'placeholder',
+                placeholder: "placeholder",
+                addClasses: true,
                 start: function (e, ui) {
                     ui.placeholder.height(ui.helper.outerHeight());
                 },
@@ -97,79 +97,144 @@ export class BuildComponent implements OnInit {
         
             function getButtonFieldHTML() {
                 var field = generateField();
-                var html = '<div class="all_div"><div class="row li_row"><div class="col-md-12"><button type="button" class="btn btn-primary btn-sm remove_bal_field pull-right" data-field="' + field + '"><i class="fa fa-times"></i></button></div></div></div><hr/><div class="row li_row form_output" data-type="button" data-field="' + field + '"><div class="col-md-12"><div class="form-group"><input type="text" name="class_' + field + '" class="form-control form_input_button_class" placeholder="Class" value="btn btn-primary" data-field="' + field + '"/></div></div><div class="col-md-12"><div class="form-group"><input type="text" name="value_' + field + '" data-field="' + field + '" class="form-control form_input_button_value" value="Submit" placeholder="Value"/></div></div><div class="col-md-12"><div class="form-group"><input type="text" name="text_' + field + '" class="form-control form_input_name" placeholder="Name"/></div></div></div>';
-                return $('<div>').addClass('li_' + field + ' form_builder_field').html(html);
+                var html = '<div class="all_div"><div class="row li_row"><div class="col-md-12">' + getHeader(5, field) + '</div></div></div><hr/><div class="row li_row form_output" data-type="button" data-field="' + field + '"><div class="col-md-12"><div class="form-group"><input type="text" name="class_' + field + '" class="form-control form_input_button_class" placeholder="Class" value="btn btn-primary" data-field="' + field + '"/></div></div><div class="col-md-12"><div class="form-group"><input type="text" name="value_' + field + '" data-field="' + field + '" class="form-control form_input_button_value" value="Submit" placeholder="Value"/></div></div><div class="col-md-12"><div class="form-group"><input type="text" name="text_' + field + '" class="form-control form_input_name" placeholder="Name"/></div></div></div>';
+                // return $('<div>').addClass('li_' + field + ' form_builder_field').html(html);
+                return $('<div>').addClass('li_' + field)
+                .css('background', '#eee')
+                .css('padding', '10px')
+                .css('margin-top', '10px')
+                .css('width', '100%').html(html);
             }
+        
+            function getNumberQuestion() {
+                return $("#main-area").children().length + 1
+            }
+        
             function getTitleFieldHTML() {
                 var field = generateField();
-                var html = '<div class="all_div"><div class="row li_row"><div class="col-md-12"><button type="button" class="btn btn-primary btn-sm remove_bal_field pull-right" data-field="' + field + '"><i class="fa fa-times"></i></button></div></div></div><hr/><div class="row li_row form_output" data-type="text" data-field="' + field + '"><div class="col-md-12"><div class="form-group"><input type="text" name="label_' + field + '" class="form-control form_input_label" value="Title" data-field="' + field + '"/></div></div></div></div>';
-                return $('<div>').addClass('li_' + field + ' form_builder_field').html(html);
+                var html = '<div class="all_div">' + 
+                                '<div class="row li_row" >' + 
+                                    '<div class="col-md-12" >' 
+                                        + getHeader(4, field) +
+                                    '</div>'+
+                                '</div>'+
+                            '</div> ' + 
+                            '<div id="contain_' + field + '" >' +
+                                '<hr/> '+ 
+                                '<div class="row li_row form_output" data-type="title" data-field="' + field + '"> ' + 
+                                    '<div class="col-md-12"> ' + 
+                                        '<div class="form-group"> '+ 
+                                            '<input type="text" name="label_' + field + '" class="form-control form_input_label" placeholder="Texto informativo" data-field="' + field + '"/> ' + 
+                                        '</div>'+
+                                    '</div> ' + 
+                                '</div>' +
+                            '</div>';
+                // return $('<div>').addClass('li_' + field + 'form_builder_field').html(html);
+                return $('<div>').addClass('li_' + field)
+                .css('background', '#eee')
+                .css('padding', '10px')
+                .css('margin-top', '10px')
+                .css('height', 'auto')
+                .css('width', '100%').html(html);
             }
+        
             function getTextFieldHTML() {
+        
                 var field = generateField();
-                var html = '<div class="all_div"><div class="row li_row"><div class="col-md-12"><button type="button" class="btn btn-primary btn-sm remove_bal_field pull-right" data-field="' + field + '"><i class="fa fa-times"></i></button></div></div></div><hr/><div class="row li_row form_output" data-type="text" data-field="' + field + '"><div class="col-md-12"><div class="form-group"><input type="text" name="label_' + field + '" class="form-control form_input_label" value="Label" data-field="' + field + '"/></div></div><div class="col-md-12"><div class="form-group"><input type="text" name="placeholder_' + field + '" data-field="' + field + '" class="form-control form_input_placeholder" placeholder="Placeholder"/></div></div><div class="col-md-12">'+
-                '<div class="form-group"><div class="control-group">'+
-                '<label class="control-label" for="multipleradios-0">Tipo</label>'+
-                    '<div class="controls">'+
-                      '<label class="radio" for="multipleradios-0-0">'+
-                       '<input type="radio" name="multipleradios-0" id="multipleradios-0-0" value="Texto" checked="checked">'+
-                        'Texto'+
-                     ' </label>'+
-                     '<label class="radio" for="multipleradios-0-1">' +
-                     '  <input type="radio" name="multipleradios-0" id="multipleradios-0-1" value="Numero"> '+
-                     '  Numero '+
-                     ' </label>'+
-                     ' <label class="radio" for="multipleradios-0-2"> '+
-                     '   <input type="radio" name="multipleradios-0" id="multipleradios-0-2" value="Correo">'+
-                     '   Correo'+
-                     ' </label>'+
-                     ' </div>'+
-                     '</div></div>'+
-                     ' </div> <div class="col-md-12"><div class="form-check"><label class="form-check-label"><input data-field="' + field + '" type="checkbox" class="form-check-input form_input_req">Required</label></div></div></div>';
-                return $('<div>').addClass('li_' + field + ' form_builder_field').html(html);
+                var html = '<div class="all_div">'+
+                                '<div class="row li_row">'+
+                                    '<div class="col-md-12">' + getHeader(1, field) + '</div>'+
+                                '</div>'+
+                            '</div>'+
+                            '<div id="contain_' + field + '" >' +
+                                '<hr/>'+
+                                '<div class="row li_row form_output" data-type="text" data-field="' + field + '">'+
+                                    '<div class="col-md-12">'+
+                                        '<div class="form-group">'+
+                                            '<input type="text" name="label_' + field + '" class="form-control form_input_label" value="" placeholder="Título de la pregunta" data-field="' + field + '"/>'+
+                                        '</div>'+
+                                    '</div>'+
+                                '<div class="col-md-12">'+
+                                    '<div class="form-group">'+
+                                        '<input type="text" name="placeholder_' + field + '" data-field="' + field + '" class="form-control form_input_placeholder" placeholder="Placeholder"/>'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="col-md-12">' +
+                                    '<div class="form-group">'+
+                                        '<div class="control-group">' +
+                                            '<label class="control-label" for="multipleradios-0">Tipo</label>' +
+                                            '<select class="form-control"><option>Texto</option><option>Números enteros</option><option>Números decimales</option></select>'
+                                        '</div>'+
+                                    '</div>' +
+                                '</div>'+
+                                '<div class="col-md-12">'+
+                                    '<div class="form-check">'+
+                                        '<label class="form-check-label">'+
+                                            '<input data-field="' + field + '" type="checkbox" class="form-check-input form_input_req">Required</label>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>';
+                // return $('<div>').addClass('li_' + field + ' form_builder_field').html(html);
+                return $('<div>').addClass('li_' + field)
+                .css('background', '#eee')
+                .css('padding', '10px')
+                .css('margin-top', '10px')
+                .css('height', 'auto')
+                .css('width', '100%').html(html);
             }
-            function getNumberFieldHTML() {
-                var field = generateField();
-                var html = '<div class="all_div"><div class="row li_row"><div class="col-md-12"><button type="button" class="btn btn-primary btn-sm remove_bal_field pull-right" data-field="' + field + '"><i class="fa fa-times"></i></button></div></div></div><hr/><div class="row li_row form_output" data-type="number" data-field="' + field + '"><div class="col-md-12"><div class="form-group"><input type="text" name="label_' + field + '" class="form-control form_input_label" value="Label" data-field="' + field + '"/></div></div><div class="col-md-12"><div class="form-group"><input type="text" name="placeholder_' + field + '" data-field="' + field + '" class="form-control form_input_placeholder" placeholder="Placeholder"/></div></div><div class="col-md-12"><div class="form-group"><input type="text" name="text_' + field + '" class="form-control form_input_name" placeholder="Name"/></div></div><div class="col-md-12"><div class="form-check"><label class="form-check-label"><input data-field="' + field + '" type="checkbox" class="form-check-input form_input_req">Required</label></div></div></div>';
-                return $('<div>').addClass('li_' + field + ' form_builder_field').html(html);
+        
+            function getHeader(type, field) {
+                // console.log(field)
+                var icon = ""
+                var text = ""
+                if (type == 1) {
+                    icon = '<i class="fas fa-text-width"></i>'
+                    text = " Texto "
+                } else if (type == 2) {
+                    icon = '<i class="far fa-check-circle"></i>'
+                    text = " Opción unica "
+                }
+                else if (type == 3) {
+                    icon = '<i class="fas fa-check-double"></i>'
+                    text = " Opción multiple "
+                } else if (type == 4) {
+                    icon = '<i class="far fa-comment"></i>'
+                    text = "  Texto informativo"
+                }
+                var count = getNumberQuestion()
+                return "<h6> <b> P" + count + '</b> ' + 
+                ' <button type="button"  class="btn btn-primary btn-sm remove_bal_field pull-right" data-field="' + field + '"><i class="fa fa-times"></i></button> ' + 
+                ' <button type="button" style="position: relative; right: 8px" class="btn btn-success edit_bal_field btn-sm pull-right" data-field="' + field + '"><i class="fa fa-edit"></i></button> ' +
+                ' <button type="button" style="position: relative; right: 13px" class="btn btn-info hidden_bal_field btn-sm pull-right" data-field="' + field + '"><i class="far fa-eye-slash"></i></button> ' +
+                '</h6>'
+                    + icon + text
             }
-            function getEmailFieldHTML() {
-                var field = generateField();
-                var html = '<div class="all_div"><div class="row li_row"><div class="col-md-12"><button type="button" class="btn btn-primary btn-sm remove_bal_field pull-right" data-field="' + field + '"><i class="fa fa-times"></i></button></div></div></div><hr/><div class="row li_row form_output" data-type="email" data-field="' + field + '"><div class="col-md-12"><div class="form-group"><input type="text" name="label_' + field + '" class="form-control form_input_label" value="Label" data-field="' + field + '"/></div></div><div class="col-md-12"><div class="form-group"><input type="text" name="placeholder_' + field + '" data-field="' + field + '" class="form-control form_input_placeholder" placeholder="Placeholder"/></div></div><div class="col-md-12"><div class="form-group"><input type="text" name="text_' + field + '" class="form-control form_input_name" placeholder="Name"/></div></div><div class="col-md-12"><div class="form-check"><label class="form-check-label"><input data-field="' + field + '" type="checkbox" class="form-check-input form_input_req">Required</label></div></div></div>';
-                return $('<div>').addClass('li_' + field + ' form_builder_field').html(html);
-            }
-            function getPasswordFieldHTML() {
-                var field = generateField();
-                var html = '<div class="all_div"><div class="row li_row"><div class="col-md-12"><button type="button" class="btn btn-primary btn-sm remove_bal_field pull-right" data-field="' + field + '"><i class="fa fa-times"></i></button></div></div></div><hr/><div class="row li_row form_output" data-type="password" data-field="' + field + '"><div class="col-md-12"><div class="form-group"><input type="text" name="label_' + field + '" class="form-control form_input_label" value="Label" data-field="' + field + '"/></div></div><div class="col-md-12"><div class="form-group"><input type="text" name="placeholder_' + field + '" data-field="' + field + '" class="form-control form_input_placeholder" placeholder="Placeholder"/></div></div><div class="col-md-12"><div class="form-group"><input type="text" name="text_' + field + '" class="form-control form_input_name" placeholder="Name"/></div></div><div class="col-md-12"><div class="form-check"><label class="form-check-label"><input data-field="' + field + '" type="checkbox" class="form-check-input form_input_req">Required</label></div></div></div>';
-                return $('<div>').addClass('li_' + field + ' form_builder_field').html(html);
-            }
-            function getDateFieldHTML() {
-                var field = generateField();
-                var html = '<div class="all_div"><div class="row li_row"><div class="col-md-12"><button type="button" class="btn btn-primary btn-sm remove_bal_field pull-right" data-field="' + field + '"><i class="fa fa-times"></i></button></div></div></div><hr/><div class="row li_row form_output" data-type="date" data-field="' + field + '"><div class="col-md-12"><div class="form-group"><input type="text" name="label_' + field + '" class="form-control form_input_label" value="Label" data-field="' + field + '"/></div></div><div class="col-md-12"><div class="form-group"><input type="text" name="text_' + field + '" class="form-control form_input_name" placeholder="Name"/></div></div><div class="col-md-12"><div class="form-check"><label class="form-check-label"><input data-field="' + field + '" type="checkbox" class="form-check-input form_input_req">Required</label></div></div></div>';
-                return $('<div>').addClass('li_' + field + ' form_builder_field').html(html);
-            }
-            function getTextAreaFieldHTML() {
-                var field = generateField();
-                var html = '<div class="all_div"><div class="row li_row"><div class="col-md-12"><button type="button" class="btn btn-primary btn-sm remove_bal_field pull-right" data-field="' + field + '"><i class="fa fa-times"></i></button></div></div></div><hr/><div class="row li_row form_output" data-type="textarea" data-field="' + field + '"><div class="col-md-12"><div class="form-group"><input type="text" name="label_' + field + '" class="form-control form_input_label" value="Label" data-field="' + field + '"/></div></div><div class="col-md-12"><div class="form-group"><input type="text" name="placeholder_' + field + '" data-field="' + field + '" class="form-control form_input_placeholder" placeholder="Placeholder"/></div></div><div class="col-md-12"><div class="form-group"><input type="text" name="text_' + field + '" class="form-control form_input_name" placeholder="Name"/></div></div><div class="col-md-12"><div class="form-check"><label class="form-check-label"><input data-field="' + field + '" type="checkbox" class="form-check-input form_input_req">Required</label></div></div></div>';
-                return $('<div>').addClass('li_' + field + ' form_builder_field').html(html);
-            }
-            function getSelectFieldHTML() {
-                var field = generateField();
-                var opt1 = generateField();
-                var html = '<div class="all_div"><div class="row li_row"><div class="col-md-12"><button type="button" class="btn btn-primary btn-sm remove_bal_field pull-right" data-field="' + field + '"><i class="fa fa-times"></i></button></div></div><hr/><div class="row li_row form_output" data-type="select" data-field="' + field + '"><div class="col-md-12"><div class="form-group"><input type="text" name="label_' + field + '" class="form-control form_input_label" value="Label" data-field="' + field + '"/></div></div><div class="col-md-12"><div class="form-group"><input type="text" name="text_' + field + '" class="form-control form_input_name" placeholder="Name"/></div></div><div class="col-md-12"><div class="form-group"><select name="select_' + field + '" class="form-control"><option data-opt="' + opt1 + '" value="Value">Option</option></select></div></div></div><div class="row li_row"><div class="col-md-12"><div class="field_extra_info_' + field + '"><div data-field="' + field + '" class="row select_row_' + field + '" data-opt="' + opt1 + '"><div class="col-md-4"><div class="form-group"><input type="text" value="Option" class="s_opt form-control"/></div></div><div class="col-md-4"><div class="form-group"><input type="text" value="Value" class="s_val form-control"/></div></div><div class="col-md-4"><i class="margin-top-5 fa fa-plus-circle fa-2x default_blue add_more_select" data-field="' + field + '"></i></div></div></div></div></div></div>';
-                return $('<div>').addClass('li_' + field + ' form_builder_field').html(html);
-            }
+        
+        
             function getRadioFieldHTML() {
                 var field = generateField();
                 var opt1 = generateField();
-                var html = '<div class="all_div"><div class="row li_row"><div class="col-md-12"><button type="button" class="btn btn-primary btn-sm remove_bal_field pull-right" data-field="' + field + '"><i class="fa fa-times"></i></button></div></div><hr/><div class="row li_row form_output" data-type="radio" data-field="' + field + '"><div class="col-md-12"><div class="form-group"><input type="text" name="label_' + field + '" class="form-control form_input_label" value="Label" data-field="' + field + '"/></div></div><div class="col-md-12"><div class="form-group"><input type="text" name="text_' + field + '" class="form-control form_input_name" placeholder="Name"/></div></div><div class="col-md-12"><div class="form-group"><div class="mt-radio-list radio_list_' + field + '"><label class="mt-radio mt-radio-outline"><input data-opt="' + opt1 + '" type="radio" name="radio_' + field + '" value="Value"> <p class="r_opt_name_' + opt1 + '">Option</p><span></span></label></div></div></div></div><div class="row li_row"><div class="col-md-12"><div class="field_extra_info_' + field + '"><div data-field="' + field + '" class="row radio_row_' + field + '" data-opt="' + opt1 + '"><div class="col-md-4"><div class="form-group"><input type="text" value="Option" class="r_opt form-control"/></div></div><div class="col-md-4"><div class="form-group"><input type="text" value="Value" class="r_val form-control"/></div></div><div class="col-md-4"><i class="margin-top-5 fa fa-plus-circle fa-2x default_blue add_more_radio" data-field="' + field + '"></i></div></div></div></div></div></div>';
-                return $('<div>').addClass('li_' + field + ' form_builder_field').html(html);
+                var html = '<div class="all_div"><div class="row li_row"><div class="col-md-12"> ' + getHeader(2, field) + '</div></div><div id="contain_' + field + '" ><hr/><div class="row li_row form_output" data-type="radio" data-field="' + field + '"><div class="col-md-12"><div class="form-group"><input type="text" name="label_' + field + '" class="form-control form_input_label"  value="" placeholder="Título de la pregunta" data-field="' + field + '"/></div></div><div class="col-md-12"><div class="form-group"></div></div><div class="col-md-12"><div class="form-group"><div class="mt-radio-list radio_list_' + field + '"><label class="mt-radio mt-radio-outline"><input data-opt="' + opt1 + '" type="radio" name="radio_' + field + '" value="Value" > <p class="r_opt_name_' + opt1 + '">Opción</p><span></span></label></div></div></div></div><div class="row li_row"><div class="col-md-12"><div class="field_extra_info_' + field + '"><div data-field="' + field + '" class="row radio_row_' + field + '" data-opt="' + opt1 + '"><div class="col-md-4"><div class="form-group"><input type="text" value="Opción" class="r_opt form-control"/></div></div><div class="col-md-4"><div class="form-group"><input type="text" value="Valuse" class="r_val form-control" style="display: none"/></div></div><div class="col-md-4"><i class="margin-top-5 fa fa-plus-circle fa-2x default_blue add_more_radio" data-field="' + field + '"></i></div></div></div></div></div></div>';
+                // return $('<div>').addClass('li_' + field + ' form_builder_field').html(html);
+                return $('<div>').addClass('li_' + field)
+                .css('background', '#eee')
+                .css('padding', '10px')
+                .css('margin-top', '10px')
+                .css('height', 'auto')
+                .css('width', '100%').html(html);
             }
+        
             function getCheckboxFieldHTML() {
                 var field = generateField();
                 var opt1 = generateField();
-                var html = '<div class="all_div"><div class="row li_row"><div class="col-md-12"><button type="button" class="btn btn-primary btn-sm remove_bal_field pull-right" data-field="' + field + '"><i class="fa fa-times"></i></button></div></div><hr/><div class="row li_row form_output" data-type="checkbox" data-field="' + field + '"><div class="col-md-12"><div class="form-group"><input type="text" name="label_' + field + '" class="form-control form_input_label" value="Label" data-field="' + field + '"/></div></div><div class="col-md-12"><div class="form-group"><input type="text" name="text_' + field + '" class="form-control form_input_name" placeholder="Name"/></div></div><div class="col-md-12"><div class="form-group"><div class="mt-checkbox-list checkbox_list_' + field + '"><label class="mt-checkbox mt-checkbox-outline"><input data-opt="' + opt1 + '" type="checkbox" name="checkbox_' + field + '" value="Value"> <p class="c_opt_name_' + opt1 + '">Option</p><span></span></label></div></div></div></div><div class="row li_row"><div class="col-md-12"><div class="field_extra_info_' + field + '"><div data-field="' + field + '" class="row checkbox_row_' + field + '" data-opt="' + opt1 + '"><div class="col-md-4"><div class="form-group"><input type="text" value="Option" class="c_opt form-control"/></div></div><div class="col-md-4"><div class="form-group"><input type="text" value="Value" class="c_val form-control"/></div></div><div class="col-md-4"><i class="margin-top-5 fa fa-plus-circle fa-2x default_blue add_more_checkbox" data-field="' + field + '"></i></div></div></div></div></div></div>';
-                return $('<div>').addClass('li_' + field + ' form_builder_field').html(html);
+                var html = '<div class="all_div"><div class="row li_row"><div class="col-md-12"> ' + getHeader(3, field) + '</button></div></div><div id="contain_' + field + '" ><hr/><div class="row li_row form_output" data-type="checkbox" data-field="' + field + '"><div class="col-md-12"><div class="form-group"><input type="text" name="label_' + field + '" class="form-control form_input_label"  value="" placeholder="Título de la pregunta" data-field="' + field + '"/></div></div><div class="col-md-12"><div class="form-group"></div></div><div class="col-md-12"><div class="form-group"><div class="mt-checkbox-list checkbox_list_' + field + '"><label class="mt-checkbox mt-checkbox-outline"><input data-opt="' + opt1 + '" type="checkbox" name="checkbox_' + field + '" value="Value"> <p class="c_opt_name_' + opt1 + '">Opción</p><span></span></label></div></div></div></div><div class="row li_row"><div class="col-md-12"><div class="field_extra_info_' + field + '"><div data-field="' + field + '" class="row checkbox_row_' + field + '" data-opt="' + opt1 + '"><div class="col-md-4"><div class="form-group"><input type="text" value="Opción" class="c_opt form-control"/></div></div><div class="col-md-4"><div class="form-group"><input type="text" value="Value" style="display: none"  class="c_val form-control"/></div></div><div class="col-md-4"><i class="margin-top-5 fa fa-plus-circle fa-2x default_blue add_more_checkbox" data-field="' + field + '"></i></div></div></div></div></div></div>';
+                // return $('<div>').addClass('li_' + field + ' form_builder_field').html(html);
+                return $('<div>').addClass('li_' + field)
+                .css('background', '#eee')
+                .css('padding', '10px')
+                .css('margin-top', '10px')
+                .css('height', 'auto')
+                .css('width', '100%').html(html);
             }
         
             $(document).on('click', '.add_more_select', function () {
@@ -191,7 +256,7 @@ export class BuildComponent implements OnInit {
                 $(this).closest('.form_builder_field').css('height', 'auto');
                 var field = $(this).attr('data-field');
                 var option = generateField();
-                $('.field_extra_info_' + field).append('<div data-opt="' + option + '" data-field="' + field + '" class="row radio_row_' + field + '"><div class="col-md-4"><div class="form-group"><input type="text" value="Option" class="r_opt form-control"/></div></div><div class="col-md-4"><div class="form-group"><input type="text" value="Value" class="r_val form-control"/></div></div><div class="col-md-4"><i class="margin-top-5 fa fa-plus-circle fa-2x default_blue add_more_radio" data-field="' + field + '"></i><i class="margin-top-5 margin-left-5 fa fa-times-circle default_red fa-2x remove_more_radio" data-field="' + field + '"></i></div></div>');
+                $('.field_extra_info_' + field).append('<div data-opt="' + option + '" data-field="' + field + '" class="row radio_row_' + field + '"><div class="col-md-4"><div class="form-group"><input type="text" value="Opción" class="r_opt form-control"/></div></div><div class="col-md-4"><div class="form-group"></div></div><div class="col-md-4"><i class="margin-top-5 fa fa-plus-circle fa-2x default_blue add_more_radio" data-field="' + field + '"></i><i class="margin-top-5 margin-left-5 fa fa-times-circle default_red fa-2x remove_more_radio" data-field="' + field + '"></i></div></div>');
                 var options = '';
                 $('.radio_row_' + field).each(function () {
                     var opt = $(this).find('.r_opt').val();
@@ -206,7 +271,7 @@ export class BuildComponent implements OnInit {
                 $(this).closest('.form_builder_field').css('height', 'auto');
                 var field = $(this).attr('data-field');
                 var option = generateField();
-                $('.field_extra_info_' + field).append('<div data-opt="' + option + '" data-field="' + field + '" class="row checkbox_row_' + field + '"><div class="col-md-4"><div class="form-group"><input type="text" value="Option" class="c_opt form-control"/></div></div><div class="col-md-4"><div class="form-group"><input type="text" value="Value" class="c_val form-control"/></div></div><div class="col-md-4"><i class="margin-top-5 fa fa-plus-circle fa-2x default_blue add_more_checkbox" data-field="' + field + '"></i><i class="margin-top-5 margin-left-5 fa fa-times-circle default_red fa-2x remove_more_checkbox" data-field="' + field + '"></i></div></div>');
+                $('.field_extra_info_' + field).append('<div data-opt="' + option + '" data-field="' + field + '" class="row checkbox_row_' + field + '"><div class="col-md-4"><div class="form-group"><input type="text" value="Opción" class="c_opt form-control"/></div></div><div class="col-md-4"><div class="form-group"></div></div><div class="col-md-4"><i class="margin-top-5 fa fa-plus-circle fa-2x default_blue add_more_checkbox" data-field="' + field + '"></i><i class="margin-top-5 margin-left-5 fa fa-times-circle default_red fa-2x remove_more_checkbox" data-field="' + field + '"></i></div></div>');
                 var options = '';
                 $('.checkbox_row_' + field).each(function () {
                     var opt = $(this).find('.c_opt').val();
@@ -273,6 +338,25 @@ export class BuildComponent implements OnInit {
                     getPreview();
                 });
             });
+            $(document).on('click', '.hidden_bal_field', function (e) {
+                e.preventDefault();
+                // $('#contain').hide();
+                var field = $(this).attr('data-field');
+                var field2 = 'contain_';
+                var idd = field2 + field;
+                if(idd == idd){
+                    $('#contain_' + field).hide();
+                }
+            });
+            $(document).on('click', '.edit_bal_field', function (e) {
+                e.preventDefault();
+                var field = $(this).attr('data-field');
+                var field2 = 'contain_';
+                var idd = field2 + field;
+                if(idd == idd){
+                    $('#contain_' + field).show();
+                }
+            });
             $(document).on('click', '.remove_more_select', function () {
                 var field = $(this).attr('data-field');
                 $(this).closest('.select_row_' + field).hide('400', function () {
@@ -336,9 +420,11 @@ export class BuildComponent implements OnInit {
             $(document).on('keyup', '.form_input_name', function () {
                 getPreview();
             });
+        
             function generateField() {
                 return Math.floor(Math.random() * (100000 - 1 + 1) + 57);
             }
+        
             function getPreview(plain_html = '') {
                 var el = $('.form_builder_area .form_output');
                 var html = '';
@@ -347,6 +433,15 @@ export class BuildComponent implements OnInit {
                     //var field = $(this).attr('data-field');
                     var label = $(this).find('.form_input_label').val();
                     var name = $(this).find('.form_input_name').val();
+                    if (data_type === 'title') {
+                        var placeholder = $(this).find('.form_input_placeholder').val();
+                        var checkbox = $(this).find('.form-check-input');
+                        var required = '';
+                        if (checkbox.is(':checked')) {
+                            required = 'required';
+                        }
+                        html += '<div class="form-group"><label class="control-label">' + label + '</label></div>';
+                    }
                     if (data_type === 'text') {
                         var placeholder = $(this).find('.form_input_placeholder').val();
                         var checkbox = $(this).find('.form-check-input');
@@ -356,50 +451,50 @@ export class BuildComponent implements OnInit {
                         }
                         html += '<div class="form-group"><label class="control-label">' + label + '</label><input type="text" name="' + name + '" placeholder="' + placeholder + '" class="form-control" ' + required + '/></div>';
                     }
-                    if (data_type === 'number') {
-                        var placeholder = $(this).find('.form_input_placeholder').val();
-                        var checkbox = $(this).find('.form-check-input');
-                        var required = '';
-                        if (checkbox.is(':checked')) {
-                            required = 'required';
-                        }
-                        html += '<div class="form-group"><label class="control-label">' + label + '</label><input type="number" name="' + name + '" placeholder="' + placeholder + '" class="form-control" ' + required + '/></div>';
-                    }
-                    if (data_type === 'email') {
-                        var placeholder = $(this).find('.form_input_placeholder').val();
-                        var checkbox = $(this).find('.form-check-input');
-                        var required = '';
-                        if (checkbox.is(':checked')) {
-                            required = 'required';
-                        }
-                        html += '<div class="form-group"><label class="control-label">' + label + '</label><input type="email" name="' + name + '" placeholder="' + placeholder + '" class="form-control" ' + required + '/></div>';
-                    }
-                    if (data_type === 'password') {
-                        var placeholder = $(this).find('.form_input_placeholder').val();
-                        var checkbox = $(this).find('.form-check-input');
-                        var required = '';
-                        if (checkbox.is(':checked')) {
-                            required = 'required';
-                        }
-                        html += '<div class="form-group"><label class="control-label">' + label + '</label><input type="password" name="' + name + '" placeholder="' + placeholder + '" class="form-control" ' + required + '/></div>';
-                    }
-                    if (data_type === 'textarea') {
-                        var placeholder = $(this).find('.form_input_placeholder').val();
-                        var checkbox = $(this).find('.form-check-input');
-                        var required = '';
-                        if (checkbox.is(':checked')) {
-                            required = 'required';
-                        }
-                        html += '<div class="form-group"><label class="control-label">' + label + '</label><textarea rows="5" name="' + name + '" placeholder="' + placeholder + '" class="form-control" ' + required + '/></div>';
-                    }
-                    if (data_type === 'date') {
-                        var checkbox = $(this).find('.form-check-input');
-                        var required = '';
-                        if (checkbox.is(':checked')) {
-                            required = 'required';
-                        }
-                        html += '<div class="form-group"><label class="control-label">' + label + '</label><input type="date" name="' + name + '" class="form-control" ' + required + '/></div>';
-                    }
+                    // if (data_type === 'number') {
+                    //     var placeholder = $(this).find('.form_input_placeholder').val();
+                    //     var checkbox = $(this).find('.form-check-input');
+                    //     var required = '';
+                    //     if (checkbox.is(':checked')) {
+                    //         required = 'required';
+                    //     }
+                    //     html += '<div class="form-group"><label class="control-label">' + label + '</label><input type="number" name="' + name + '" placeholder="' + placeholder + '" class="form-control" ' + required + '/></div>';
+                    // }
+                    // if (data_type === 'email') {
+                    //     var placeholder = $(this).find('.form_input_placeholder').val();
+                    //     var checkbox = $(this).find('.form-check-input');
+                    //     var required = '';
+                    //     if (checkbox.is(':checked')) {
+                    //         required = 'required';
+                    //     }
+                    //     html += '<div class="form-group"><label class="control-label">' + label + '</label><input type="email" name="' + name + '" placeholder="' + placeholder + '" class="form-control" ' + required + '/></div>';
+                    // }
+                    // if (data_type === 'password') {
+                    //     var placeholder = $(this).find('.form_input_placeholder').val();
+                    //     var checkbox = $(this).find('.form-check-input');
+                    //     var required = '';
+                    //     if (checkbox.is(':checked')) {
+                    //         required = 'required';
+                    //     }
+                    //     html += '<div class="form-group"><label class="control-label">' + label + '</label><input type="password" name="' + name + '" placeholder="' + placeholder + '" class="form-control" ' + required + '/></div>';
+                    // }
+                    // if (data_type === 'textarea') {
+                    //     var placeholder = $(this).find('.form_input_placeholder').val();
+                    //     var checkbox = $(this).find('.form-check-input');
+                    //     var required = '';
+                    //     if (checkbox.is(':checked')) {
+                    //         required = 'required';
+                    //     }
+                    //     html += '<div class="form-group"><label class="control-label">' + label + '</label><textarea rows="5" name="' + name + '" placeholder="' + placeholder + '" class="form-control" ' + required + '/></div>';
+                    // }
+                    // if (data_type === 'date') {
+                    //     var checkbox = $(this).find('.form-check-input');
+                    //     var required = '';
+                    //     if (checkbox.is(':checked')) {
+                    //         required = 'required';
+                    //     }
+                    //     html += '<div class="form-group"><label class="control-label">' + label + '</label><input type="date" name="' + name + '" class="form-control" ' + required + '/></div>';
+                    // }
                     if (data_type === 'button') {
                         var btn_class = $(this).find('.form_input_button_class').val();
                         var btn_value = $(this).find('.form_input_button_value').val();
@@ -432,7 +527,10 @@ export class BuildComponent implements OnInit {
                         });
                         html += '<div class="form-group"><label class="control-label">' + label + '</label>' + option_html + '</div>';
                     }
+                    html += "<hr>"
                 });
+        
+        
                 if (html.length) {
                     $('.export_html').show();
                 } else {
@@ -444,12 +542,13 @@ export class BuildComponent implements OnInit {
                 } else {
                     $('.plain_html').hide();
                     $('.preview').html(html).show();
+                }
             }
-            }
+        
             $(document).on('click', '.export_html', function () {
                 getPreview('html');
             });
         });
-
+       
     }
 }

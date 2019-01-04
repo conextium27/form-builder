@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HeroService } from './components/services/hero.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'buildForm';
+
+  public constructor(
+    private heroService: HeroService) { }
 }

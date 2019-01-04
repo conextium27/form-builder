@@ -1,44 +1,66 @@
-<div class="container">
-  <div class="clearfix"></div>
+
+<div class="container-fluid">
   <div class="form_builder" style="margin-top: 25px">
     <div class="row">
-      <div class="col-md-2">
-        <legend>Componentes</legend>
+      <div class="col-md-2 zeus-div">
+        <legend class="center">
+          Componentes
+        </legend>
         <nav class="nav-sidebar">
           <ul class="nav">
             <li class="form_bal_title">
-              <a href="javascript:;">Titulo <i class="fa fa-plus-circle pull-right"></i></a>
+              <a href="javascript:;">
+                <i class="fa fa-comment"></i>
+                Texto informativo
+                <i class="fa fa-plus-circle pull-right"></i></a>
             </li>
             <li class="form_bal_textfield">
-              <a href="javascript:;">Text Field <i class="fa fa-plus-circle pull-right"></i></a>
+              <a href="javascript:;"><i class="fa fa-text-width"></i>
+                Texto
+                <i class="fa fa-plus-circle pull-right"></i></a>
             </li>
             <li class="form_bal_radio">
-              <a href="javascript:;">Radio Button <i class="fa fa-plus-circle pull-right"></i></a>
+              <a href="javascript:;">
+                <i class="far fa-check-circle"></i>
+                Opción única
+                <i class="fa fa-plus-circle pull-right"></i></a>
             </li>
             <li class="form_bal_checkbox">
-              <a href="javascript:;">Checkbox <i class="fa fa-plus-circle pull-right"></i></a>
+              <a href="javascript:;">
+                <i class="fas fa-check-double"></i>
+                Opción multiple
+                <i class="fa fa-plus-circle pull-right"></i></a>
             </li>
-            <li class="form_bal_button">
-              <a href="javascript:;">Button <i class="fa fa-plus-circle pull-right"></i></a>
-            </li>
+            <!--<li class="form_bal_button">
+                          <a href="javascript:;">Button <i class="fa fa-plus-circle pull-right"></i></a>
+                      </li> -->
           </ul>
         </nav>
       </div>
-      <div class="col-md-5">
-        <legend>Configuración</legend>
-        <div class="col-md-12 bal_builder">
-          <div class="form_builder_area" style="border-style: dotted; width: 100%"></div>
+      <div class="col-md-5 zeus-div">
+        <legend class="center">
+          Configuración
+        </legend>
+        <div class="row" style="overflow-y: scroll; height:400px;">
+          <div class="col-md-12 bal_builder">
+            <div class="form_builder_area" id="main-area"></div>
+          </div>
         </div>
+
       </div>
-      <div class="col-md-5">
-        <legend class="">Render</legend>
-        <div class="col-md-12">
+      <div class="col-md-5 zeus-div">
+        <legend class="center">
+          Vista previa
+        </legend>
+        <div class="col-md-12" style="overflow-y: scroll; height:400px;">
           <form class="form-horizontal">
             <div class="preview"></div>
-            <div style="display: none" class="form-group plain_html"><textarea rows="50" class="form-control"></textarea></div>
+            <div style="display: none" class="form-group plain_html"><textarea rows="50" class="form-control"></textarea>
+            </div>
           </form>
         </div>
       </div>
+
     </div>
   </div>
 </div>

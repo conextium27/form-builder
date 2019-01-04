@@ -1,0 +1,96 @@
+<div class="row">
+    <div class="col-12 text-center">
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-secondary" (click)="configService.closeMenu()" data-toggle="collapse" data-target="#pre">Vista previa</button>
+        </div>
+    </div>
+</div>
+
+
+<div class="sonar-emitter">
+    <span class="togglePanel forFormFields " (click)="configService.openMenu()" style="cursor: pointer">
+        <span class="toggleText ">Agregar Elementos</span>
+        <span class=""><i class=" plus fas fa-plus"></i></span>
+        <span class="sonar-wave"></span>
+    </span>
+
+</div>
+
+<div [ngClass]="['sidenav', configService.classMenu]">
+    <div class="form_builder">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="">
+                    <h4 class="fieldsPanel-headerText">
+                        Componentes
+                        <span class="fieldsPanel-headerClose" (click)="configService.closeMenu()">
+                            <i class="fas fa-times"></i>
+                        </span>
+                    </h4>
+
+                </div>
+                <div class="fieldSection-scroller tethers">
+                    <ul class="fieldSection-list" *ngFor="let item of dataModel">
+                        <li class="field-item" id="{{item.id}}">
+                            <div class="field-icon">
+                                <span><i [ngClass]="'fa ' + item.icon"></i></span>
+                            </div>
+                            <div class="field-name">
+                                {{ item.name}}
+                            </div>
+                            <hr>
+                            <!-- <a href="javascript:;">
+                                
+                                <i class="fa fa-plus-circle pull-right"></i>
+                            </a> -->
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row justify-content-center" style="margin-top: 70px; background-color:#fff;">
+    <div id="pre" class="collapse col-12 text-center">
+            <legend class="center"></legend>
+            <div  class="col-12" style="overflow-y: scroll; height:500px;">
+                <form class="form-horizontal">
+                    <div class="preview"></div>
+                    <div style="display: none" class="form-group plain_html">
+                        <textarea rows="10" class="form-control"></textarea>
+                    </div>
+                </form>
+            </div>
+    </div>
+
+</div>
+
+<div  class="row justify-content-center">
+    <!-- <div class="col-2"></div> -->
+    <div class="col-8" style="margin-top: 50px;">
+        <!-- <legend class="center-block">
+            Configuración
+        </legend> -->
+        <div class="row">
+            <ul class="clearfix col-12" style="padding: 0px;margin: 0px;font-size: 14px;background-color:#fff;">
+                <li  class="arr">
+                    <div class="col-md-11 bal_builder stageEmpty isSmall">
+                        <!-- <div class="form_builder_area" id="main-area" (click)="configService.openOnlyMenu()"> -->
+                        <div class="form_builder_area" id="main-area" >
+                            <div id="arrow">
+                                <span><i class="ro fas fa-arrows-alt"></i></span>
+                                <span> Arrastra tu primera pregunta aquí desde el panel elementos. </span>
+                            </div>
+                        </div>
+                    </div>
+
+                </li>
+
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+
