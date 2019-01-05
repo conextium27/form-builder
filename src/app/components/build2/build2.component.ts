@@ -50,16 +50,15 @@ export class Build2Component implements OnInit {
     $(document).ready(function () {
 
         
-        
         // $('#main-area').bind("DOMNodeInserted DOMNodeRemoved",function(){
-            
-        //     countparent();
-        //     console.log("entra");
-        //    });
+        $('#main-area').bind("mouseenter mouseleave",function(){
+            countparent();
+           });
+        
+        
 
       $("#25").draggable({
-          helper: function (e) {
-              e.stopPropagation();
+          helper: function () {
               return getTitleFieldHTML();
           },
           connectToSortable: ".form_builder_area"
@@ -102,17 +101,9 @@ export class Build2Component implements OnInit {
       function countparent(){
           $("#main-area").children("div").each(function(i){
               $(this).find(".child").html("P" + (++i))
-              console.log("P" + i);
-          })
+          });
            
       }
-
-      
-
-    function getNumberQuestion() {
-       return $("#main-area").children().length
-    }
-
 
       function getTitleFieldHTML() {
         // $("#contain_" + field).hide();
@@ -243,13 +234,37 @@ export class Build2Component implements OnInit {
                                   '<input type="text" name="placeholder_' + field + '" data-field="' + field + '" class="form-control form_input_placeholder" placeholder="Ayuda de la pregunta"/>'+
                               '</div>'+
                           '</div>'+
-                          '<div class="col-12">'+
+                          '<div class="col-md-12">'+
                           ' <div class="">'+
-                            '<input type="checkbox">'+
-                            '<span style="color:#fff;">Requerido</span>'+
+                                '<input type="checkbox" class="">'+
+                                '<span style="color:#fff;">Requerido</span>'+
                           '</div>'+
                           '</div>'+
-                          '<div class="col-md-12 m-2">' +
+                          '<div class="col-md-12 m-1">'+
+                          ' <div class="form-group">'+
+                                '<span style="color:#fff;">Minimo de caracteres</span>'+
+                                '<input type="number" class="form-control" name="minLength" placeholder="ejemplo: 5">'+
+                            '</div>'+
+                          '</div>'+
+                          '<div class="col-md-12 m-1">'+
+                          ' <div class="form-group">'+
+                                '<span style="color:#fff;">Maximo de caracteres</span>'+
+                                '<input type="number" class="form-control" name="maxLength" placeholder="ejemplo: 10">'+
+                            '</div>'+
+                          '</div>'+
+                          '<div class="col-md-12 m-1">'+
+                          ' <div class="form-group">'+
+                                '<span style="color:#fff;">Minimo de valores</span>'+
+                                '<input type="number" class="form-control" name="minLength" placeholder="ejemplo: 5">'+
+                            '</div>'+
+                          '</div>'+
+                          '<div class="col-md-12 m-1">'+
+                          ' <div class="form-group">'+
+                                '<span style="color:#fff;">Maximo de valores</span>'+
+                                '<input type="number" class="form-control" name="maxLength" placeholder="ejemplo: 10">'+
+                            '</div>'+
+                          '</div>'+
+                          '<div class="col-md-12 m-1">' +
                               '<div class="form-group">'+
                                   '<div class="control-group">' +
                                       '<label class="control-label" for="multipleradios-0" style="color:#fff">Tipo de Pregunta</label>' +
@@ -291,15 +306,13 @@ export class Build2Component implements OnInit {
               icon = '<i class="far fa-comment"></i>'
               text = "Texto informativo"
           }
-          var count = getNumberQuestion();
-          console.log(count);
           return '<div class="row"> ' + 
                     '<div class="col-2 "> ' + 
-                        '<h5 class="child"> P' + count + '</h5>' +
+                        '<h5 class="child"></h5>' +
                     '</div>' +
                     '<div class="col-8">'+ icon + ' ' + text +'</div>' +
                     '<div class="col-2">' +
-                        '<button type="button"  class="btn btn-primary btn-sm remove_bal_field pull-right" data-field="' + field + '"><i class="fa fa-times"></i></button> ' +
+                        '<button type="button"  class="btn btn-danger btn-sm remove_bal_field pull-right" data-field="' + field + '"><i class="fa fa-times"></i></button> ' +
                         '<button type="button"  style="position: relative; right: 8px" class="btn btn-success edit_bal_field btn-sm pull-right" data-field="' + field + '"><i class="fa fa-edit"></i></button> ' +
                     '</div>' +
                         //   ' <button type="button" style="position: relative; right: 13px" class="btn btn-info hidden_bal_field btn-sm pull-right" data-field="' + field + '"><i class="far fa-eye-slash"></i></button> ' +

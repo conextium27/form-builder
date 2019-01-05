@@ -11,6 +11,7 @@
     <span class="togglePanel forFormFields " (click)="configService.openMenu()" style="cursor: pointer">
         <span class="toggleText ">Agregar Elementos</span>
         <span class=""><i class=" plus fas fa-plus"></i></span>
+        <span class="sonar-wave-int"></span>
         <span class="sonar-wave"></span>
     </span>
 
@@ -30,7 +31,7 @@
 
                 </div>
                 <div class="fieldSection-scroller tethers">
-                    <ul class="fieldSection-list" *ngFor="let item of dataModel">
+                    <ul class="fieldSection-list" *ngFor="let item of ques">
                         <li class="field-item" id="{{item.id}}">
                             <div class="field-icon">
                                 <span><i [ngClass]="'fa ' + item.icon"></i></span>
