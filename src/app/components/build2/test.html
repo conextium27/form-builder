@@ -1,1 +1,93 @@
-funciona
+'<div class="all_div">' +
+                  '<div class="row li_row" >' +
+                      '<div class="col-12" >'
+                          + getHeader(4, field) + 
+                      '</div>'+
+                      '<h6 id="result_' + field + '" class="col-12" ></h6> '+
+                  '</div>'+
+              '</div> ' +
+              '<div> ' +
+              '<script>' +
+              'function myFunction() { ' +
+                'console.log("entra ");'+
+                'document.getElementById("result_'+ field +'").innerHTML = document.getElementById("title_'+ field +'").value '+ 
+              '} '+
+              '</script>'+
+                '<div id="contain_' + field + '" class="form_builder" ' +
+                    'style=" position: fixed; ' + 
+                    'float: right; '+
+                    'right: 0px;'+
+                    'top: 57px;'+ 
+                    'width: 25%;' +
+                    'background: #3e4652; '+
+                    'line-height: 18px !important; ' +
+                    'margin: 0 !important; ' +
+                    'padding: 16px 48px 14px 18px; "> ' +
+                    '<div class="row">' +
+                        '<div class="col-md-12">' +
+                            '<div class="">' +
+                                '<h4>' +
+                                    '<span style="color:#fff;font-weight: 350;">Configuración de campo</span>' +
+                                    '<span data-field="' + field + '"  class="hidden_bal_field"  ' +
+                                         'style="cursor: pointer;'+
+                                         'font-size: 30px;'+
+                                         'width: 48px;'+
+                                         'text-align: center; '+
+                                         'color: #fff; '+
+                                         'right: -40px; '+
+                                         'position: absolute; '+
+                                         'top: -4px;">' +
+                                    '<i class="fas fa-times"></i>' +
+                                    '</span>' +
+                                '</h4>' +
+                                '<div >' +
+                                '<hr/> '+
+                                '<span style="color:#fff;font-size: 15pt;position: relative;left: -100px;top: -10px;">Título</span>' +
+                                '<div class="row li_row form_output" data-type="title" data-field="' + field + '"> ' +
+                                    '<div class="col-md-12"> ' +
+                                        '<div class="form-group"> '+
+                                            '<input id="title_'+ field +'" onkeyup="myFunction()" type="text" name="label_' + field + '" class="form-control form_input_label" placeholder="Texto informativo" data-field="' + field + '"/> ' +
+                                        '</div>'+
+                                    '</div> ' +
+                                    '<div class="col-md-7">'+
+                                        '<div class="form-group">'+
+                                            ' <div class="col-md-12">'+
+                                                        '<span style="color:#fff;"> '+
+                                                            '<input type="checkbox" value="checkpoint" class="">'+
+                                                            ' CheckPoint '+ 
+                                                        '</span>'+
+                                            '</div>'+
+                                        '</div>'+
+                                        '<div class="form-group">'+
+                                            ' <div class="col-md-12">'+
+                                                        '<span style="color:#fff;"> '+
+                                                            '<input type="checkbox" value="geolocation" class="">'+
+                                                            ' Geo Localización '+ 
+                                                        '</span>'+
+                                            '</div>'+
+                                        '</div>'+
+                                        '<div class="form-group">'+
+                                            ' <div class="col-md-12">'+
+                                                        '<span style="color:#fff;"> '+
+                                                            '<input type="checkbox" class="">'+
+                                                            ' Texto Oculto '+ 
+                                                        '</span>'+
+                                            '</div>'+
+                                        '</div>'+
+                                        '<div class="form-group">'+
+                                            ' <div class="col-md-12">'+
+                                                        '<span style="color:#fff;"> '+
+                                                            '<input type="checkbox" class="">'+
+                                                            ' En Sumario '+ 
+                                                        '</span>'+
+                                            '</div>'+
+                                        '</div>'+
+                                    '</div>'+
+                                '</div>'+
+                                '</div>' +
+                            '</div>'
+                            '</div>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>' +
+            '</div>' ;

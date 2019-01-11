@@ -1,3 +1,32 @@
-<p>
-  panelsurvey works!
-</p>
+<div class="row li_row form_output" data-type="text" data-field="' + field + '">
+    <div class="col-md-12">
+        <div class="form-group">
+            <input type="text" id="title_'+ field +'" onkeyup="myFunction()" name="label_' + field + '" class="form-control form_input_label"
+                value="" placeholder="Título de la pregunta" data-field="' + field + '" />
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
+            <input type="text" name="placeholder_' + field + '" data-field="' + field + '" class="form-control form_input_placeholder"
+                placeholder="Ayuda de la pregunta" />
+        </div>
+    </div>
+    <div class="col-md-12 m-1">
+        <div class="form-group">
+            <div class="control-group">
+                <label class="control-label" for="multipleradios-0" style="color:#fff">Tipo de Pregunta</label>
+                <select class="form-control">
+                    <option>Texto</option>
+                    <option>Números enteros</option>
+                    <option>Números decimales</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div id="check"></div>
+    </div>
+    <div class="col-md-12">
+        <button id="submit" type="submit" class="btn btn-success">Guardar Pregunta</button>
+    </div>
+</div>

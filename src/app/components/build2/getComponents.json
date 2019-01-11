@@ -1,0 +1,324 @@
+[
+    {
+        "id": "7",
+        "name": "Opcion Unica",
+        "icon": "fa-check-circle",
+        "validations": [
+            {
+                "answer_option_id": null,
+                "question_id": null,
+                "validation_id": 1,
+                "value": "REQ",
+                "prefix": null
+            },
+            {
+                "answer_option_id": null,
+                "question_id": null,
+                "validation_id": 7,
+                "value": "ROTATE",
+                "prefix": null
+            },
+            {
+                "answer_option_id": null,
+                "question_id": null,
+                "validation_id": 8,
+                "value": "DRAG",
+                "prefix": null
+            },
+            {
+                "answer_option_id": null,
+                "question_id": null,
+                "validation_id": 10,
+                "value": "REPLACE",
+                "prefix": null
+            },
+            {
+                "answer_option_id": null,
+                "question_id": null,
+                "validation_id": 11,
+                "value": "CHECKPOINT",
+                "prefix": null
+            },
+            {
+                "answer_option_id": null,
+                "question_id": null,
+                "validation_id": 12,
+                "value": "RAND",
+                "prefix": null
+            },
+            {
+                "answer_option_id": null,
+                "question_id": null,
+                "validation_id": 15,
+                "value": "GEOLOCATION",
+                "prefix": null
+            },
+            {
+                "answer_option_id": null,
+                "question_id": null,
+                "validation_id": 16,
+                "value": "READONLY",
+                "prefix": null
+            },
+            {
+                "answer_option_id": null,
+                "question_id": null,
+                "validation_id": 18,
+                "value": "HIDDEN",
+                "prefix": null
+            },
+            {
+                "answer_option_id": null,
+                "question_id": null,
+                "validation_id": 20,
+                "value": "SUMMARY",
+                "prefix": null
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "name": "Opcion Multiple",
+        "icon": "fa-check-double",
+        "validations": [
+            {
+                "answer_option_id": null,
+                "question_id": null,
+                "validation_id": 1,
+                "value": "REQ",
+                "prefix": null
+            },
+            {
+                "answer_option_id": null,
+                "question_id": null,
+                "validation_id": 4,
+                "value": "MINVAL",
+                "prefix": null
+            },
+            {
+                "answer_option_id": null,
+                "question_id": null,
+                "validation_id": 5,
+                "value": "MAXVAL",
+                "prefix": null
+            },
+            {
+                "answer_option_id": null,
+                "question_id": null,
+                "validation_id": 7,
+                "value": "ROTATE",
+                "prefix": null
+            },
+            {
+                "answer_option_id": null,
+                "question_id": null,
+                "validation_id": 8,
+                "value": "DRAG",
+                "prefix": null
+            },
+            {
+                "answer_option_id": null,
+                "question_id": null,
+                "validation_id": 10,
+                "value": "REPLACE",
+                "prefix": null
+            },
+            {
+                "answer_option_id": null,
+                "question_id": null,
+                "validation_id": 11,
+                "value": "CHECKPOINT",
+                "prefix": null
+            },
+            {
+                "answer_option_id": null,
+                "question_id": null,
+                "validation_id": 12,
+                "value": "RAND",
+                "prefix": null
+            },
+            {
+                "answer_option_id": null,
+                "question_id": null,
+                "validation_id": 15,
+                "value": "GEOLOCATION",
+                "prefix": null
+            },
+            {
+                "answer_option_id": null,
+                "question_id": null,
+                "validation_id": 16,
+                "value": "READONLY",
+                "prefix": null
+            },
+            {
+                "answer_option_id": null,
+                "question_id": null,
+                "validation_id": 18,
+                "value": "HIDDEN",
+                "prefix": null
+            },
+            {
+                "answer_option_id": null,
+                "question_id": null,
+                "validation_id": 20,
+                "value": "SUMMARY",
+                "prefix": null
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "name": "Texto Abierto",
+        "icon": "fa-text-width",
+        "validations": [
+            {
+                "answer_option_id": null,
+                "question_id": null,
+                "validation_id": 1,
+                "value": "REQ",
+                "prefix": null
+            },
+            {
+                "answer_option_id": null,
+                "question_id": null,
+                "validation_id": 2,
+                "value": "MINLEN",
+                "prefix": null
+            },
+            {
+                "answer_option_id": null,
+                "question_id": null,
+                "validation_id": 3,
+                "value": "MAXLEN",
+                "prefix": null
+            },
+            {
+                "answer_option_id": null,
+                "question_id": null,
+                "validation_id": 4,
+                "value": "MINVAL",
+                "prefix": null
+            },
+            {
+                "answer_option_id": null,
+                "question_id": null,
+                "validation_id": 5,
+                "value": "MAXVAL",
+                "prefix": null
+            },
+            {
+                "answer_option_id": null,
+                "question_id": null,
+                "validation_id": 9,
+                "value": "VAL",
+                "prefix": null
+            },
+            {
+                "answer_option_id": null,
+                "question_id": null,
+                "validation_id": 10,
+                "value": "REPLACE",
+                "prefix": null
+            },
+            {
+                "answer_option_id": null,
+                "question_id": null,
+                "validation_id": 11,
+                "value": "CHECKPOINT",
+                "prefix": null
+            },
+            {
+                "answer_option_id": null,
+                "question_id": null,
+                "validation_id": 15,
+                "value": "GEOLOCATION",
+                "prefix": null
+            },
+            {
+                "answer_option_id": null,
+                "question_id": null,
+                "validation_id": 16,
+                "value": "READONLY",
+                "prefix": null
+            },
+            {
+                "answer_option_id": null,
+                "question_id": null,
+                "validation_id": 18,
+                "value": "HIDDEN",
+                "prefix": null
+            },
+            {
+                "answer_option_id": null,
+                "question_id": null,
+                "validation_id": 20,
+                "value": "SUMMARY",
+                "prefix": null
+            },
+            {
+                "answer_option_id": null,
+                "question_id": null,
+                "validation_id": 21,
+                "value": "REGEX",
+                "prefix": null
+            },
+            {
+                "answer_option_id": null,
+                "question_id": null,
+                "validation_id": 22,
+                "value": "PLACEHOLDER",
+                "prefix": null
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "name": "Texto Informativo",
+        "icon": "fa-heading",
+        "validations": [
+            {
+                "answer_option_id": null,
+                "question_id": null,
+                "validation_id": 1,
+                "value": "REQ",
+                "prefix": null
+            },
+            {
+                "answer_option_id": null,
+                "question_id": null,
+                "validation_id": 10,
+                "value": "REPLACE",
+                "prefix": null
+            },
+            {
+                "answer_option_id": null,
+                "question_id": null,
+                "validation_id": 11,
+                "value": "CHECKPOINT",
+                "prefix": null
+            },
+            {
+                "answer_option_id": null,
+                "question_id": null,
+                "validation_id": 15,
+                "value": "GEOLOCATION",
+                "prefix": null
+            },
+            {
+                "answer_option_id": null,
+                "question_id": null,
+                "validation_id": 18,
+                "value": "HIDDEN",
+                "prefix": null
+            },
+            {
+                "answer_option_id": null,
+                "question_id": null,
+                "validation_id": 20,
+                "value": "SUMMARY",
+                "prefix": null
+            }
+        ]
+    }
+]
