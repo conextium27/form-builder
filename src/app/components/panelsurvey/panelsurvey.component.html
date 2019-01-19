@@ -1,32 +1,102 @@
-<div class="row li_row form_output" data-type="text" data-field="' + field + '">
-    <div class="col-md-12">
-        <div class="form-group">
-            <input type="text" id="title_'+ field +'" onkeyup="myFunction()" name="label_' + field + '" class="form-control form_input_label"
-                value="" placeholder="Título de la pregunta" data-field="' + field + '" />
-        </div>
-    </div>
-    <div class="col-md-12">
-        <div class="form-group">
-            <input type="text" name="placeholder_' + field + '" data-field="' + field + '" class="form-control form_input_placeholder"
-                placeholder="Ayuda de la pregunta" />
-        </div>
-    </div>
-    <div class="col-md-12 m-1">
-        <div class="form-group">
-            <div class="control-group">
-                <label class="control-label" for="multipleradios-0" style="color:#fff">Tipo de Pregunta</label>
-                <select class="form-control">
-                    <option>Texto</option>
-                    <option>Números enteros</option>
-                    <option>Números decimales</option>
-                </select>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-12">
-        <div id="check"></div>
-    </div>
-    <div class="col-md-12">
-        <button id="submit" type="submit" class="btn btn-success">Guardar Pregunta</button>
-    </div>
-</div>
+<div class="all_div">' +
+    <div class="row li_row">' +
+        <div class="col-12">'
+            + getHeader(3, field) +
+        </div>'+
+        <h6 id="result_' + field + '" class="col-12"></h6> '+
+    </div>'+
+</div> ' +
+<script>' +
+    function myFunction() {' +
+        document.getElementById("result_'+ field +'").innerHTML = document.getElementById("title_'+ field +'").value '+ 
+    } '+
+</script>'+
+<style>
+    .titl{
+        cursor: pointer;
+        font-size: 30px;
+        width: 48px;
+        text-align: center; 
+        color: #fff; 
+        right: 0px; 
+        position: absolute; 
+        top: 10px;
+    }
+    .contain{
+        position: fixed; 
+        float: right; 
+        right: 0px;
+        top: 57px;
+        width: 25%;
+        background: #3e4652;
+        line-height: 18px !important;
+        margin: 0 !important;
+        padding: 16px 48px 14px 18px;
+    }
+</style>
+<div id="contain_' + field + '" class="contain">
+    <h4>
+        <span style="color:#fff;font-weight: 350;">Configuración decampo</span>' +
+        <span data-field="' + field + '" class="hidden_bal_field titl">' +
+            <i class="fas fa-times"></i>'+
+        </span>
+    </h4>
+    <hr />'+
+    <form id="form_' + field + '" class="sendText_' + field + '">'+
+        <div class="row li_row form_output" data-type="checkbox" data-field="' + field + '">'+
+            <div class="col-md-12">'+
+                <div class="form-group">'+
+                    <input type="text" type="text" id="title_'+ field +'" onkeyup="myFunction()" name="label_' + field + '"
+                        class="form-control form_input_label" value="" placeholder="Título de la pregunta" data-field="' + field + '" />'+
+                </div>'+
+            </div>'+
+            <div class="col-md-12">'+
+                <div class="form-group"></div>'+
+            </div>'+
+            <div class="col-md-12">'+
+                <div id="check_'+field+'"></div>'+
+            </div>'+
+            <div id="summaryInput" class="form-group"> ' +
+                <div class="col-md-12"> '+
+                    <span style="color:#fff;font-size: 11pt;position: relative;left: 0px;top: 0px;"> '+
+                        Alias para pregunta en resumen de inventario</span>' +
+                    <input type="text" name="inventario" class="form-control form_input_label" placeholder="Texto informativo" />'
+                    +
+                </div>'+
+            </div> ' +
+        </div>'+
+        <div class="row li_row">'+
+            <div class="col-md-12">'+
+                <div class="field_extra_info_' + field + '">'+
+                    <div data-field="' + field + '" class="row checkbox_row_' + field + '" data-opt="' + opt1 + '">'+
+                        <div class="col-md-2">'+
+                            <h5 style="color:#fff; padding-left: 10px;">'+
+                                1'+
+                            </h5>'+
+                        </div>'+
+                        <div class="col-md-4">'+
+                            <div class="form-group">'+
+                                <input type="text" id="optionM'+field+'" name="optionM'+field+'[]" value="" placeholder="Opción"
+                                    class="c_opt form-control" />'+
+                            </div>'+
+                        </div>'+
+                        <div class="col-md-4">'+
+                            <div class="form-group">'+
+                                <input type="number" id="valueM'+field+'" name="valueR'+field+'[]" value="" placeholder="Valor"
+                                    class="c_val form-control" />'+
+                            </div>'+
+                        </div>'+
+                        <div class="col-md-2">'+
+                            <i class="margin-top-5 fa fa-plus-circle fa-2x default_blue add_more_checkbox" data-field="' + field + '"
+                                style="color:#fff;">
+                            </i>'+
+                        </div>'+
+                    </div>'+
+                </div>'+
+            </div>'+
+        </div>'+
+        <div class="col-md-12">'+
+            <button id="submit_' + field + '" type="submit" class="btn btn-success">Guardar Pregunta</button>'+
+        </div>'+
+    </form>
+</div>';
