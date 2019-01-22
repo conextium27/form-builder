@@ -44,31 +44,41 @@ export class Build2Component implements OnInit {
     constructor(
         private configService: HeroService
     ) {
-        this.getCoCatalog();
+        // this.getCoCatalog();
     }
 
     ngOnInit() {
         this.configService.classMenu = 'close_nav';
         let encuesta: any;
+        let api = "http://10.89.49.10:8091/";
 
         $(document).ready(function () {
-            encuesta = JSON.parse(localStorage.getItem("itemsArray"));
 
-            $('#main-area').bind("mouseenter mouseleave", function () {
-            });
+            var encuesta = JSON.parse(localStorage.getItem("itemsArray"));
+            var surveyId = encuesta.survey_id;
 
-            function answerPosition(){
-                        $("#main-area").children("div").each(function (i) {
-                            $(this).find(".q").html("Pregunta " + (++i))
-                        });
+            var modelEn = [{
+                      "section_id": null,
+                      "survey_id": surveyId,
+                      "title": "Sección I",
+                      "alias": "S1",
+                      "position": 0,
+                      "status": 1,
+                      "questions": []
+                    }];
 
-            }
+            encuesta.sections = modelEn;
+            localStorage.setItem('itemsArray', JSON.stringify(encuesta));
+
+           
             
-            function countPosition (){
-                    $("#main-area").children("div").each(function (i) {
-                        $(this).find(".po").html((i++))
-                    });
-            }
+            // encuesta = JSON.parse(localStorage.getItem("itemsArray"));
+            console.log(encuesta);
+
+            // $('#main-area').bind("mouseenter mouseleave", function () {
+            // });
+
+           
            
             $("#25").draggable({
                 helper: function () {
@@ -94,6 +104,18 @@ export class Build2Component implements OnInit {
                 },
                 connectToSortable: ".form_builder_area"
             });
+            function answerPosition(){
+                $("#main-area").children("div").each(function (i) {
+                    $(this).find(".q").html("Pregunta " + (++i))
+                });
+
+            }
+            
+            function countPosition (){
+                    $("#main-area").children("div").each(function (i) {
+                        $(this).find(".po").html((i++))
+                    });
+            }
 
 
             $(".form_builder_area").sortable({
@@ -130,31 +152,42 @@ export class Build2Component implements OnInit {
                     confirmButtonText: 'Si, Enviar!'
                 }).then((result) => {
                     if (result.value) {
-                        Swal(
-                            'Enviado!',
-                            'tu encuesta ha sido enviada con exito.',
-                            'success'
-                        )
                         console.log("enviado");
-                        //    $.ajax({                                       
-                        //     url: "http://10.89.49.10:8093/save",         
-                        //     type : "POST",                              
-                        //     dataType : "json",                                              
-                        //     contentType : "application/json",          
-                        //     data : JSON.stringify(item),                                            
-                        //     success : function(response) {               
-                        //       console.log(response);                   
-                        //     },                                         
-                        //     error: function(response) {         
-                        //       console.log(response);          
-                        //     }                                          
-                        // }) ;
+                        $.ajax({                                       
+                            url: api + "save",         
+                            type : "POST",                              
+                            dataType : "json",                                              
+                            contentType : "application/json",          
+                            data : JSON.stringify(item),                                            
+                            success : function(response) {               
+                                console.log(response.message.code);
+                                Swal(
+                                    'Enviado!',
+                                    'tu encuesta ha sido enviada con exito.',
+                                    'success'
+                                ).then(function(){
+                                    window.location.href = "panel";
+                                    localStorage.clear(); 
+                                  })                   
+                            },                                         
+                            error: function(response) {         
+                                console.log(response); 
+                                Swal(
+                                    'Error!',
+                                    'tu encuesta no ha sido enviada con exito.',
+                                    'error'
+                                ).then(function(){
+                                  })         
+                            }                                          
+                        }) ;
+                       
+
                     } else {
                         console.log("no enviado");
                     }
                 });
 
-                localStorage.clear();                                          
+                                                        
             });
             function getHeader(type, field) {
                 var icon = ""
@@ -195,8 +228,8 @@ export class Build2Component implements OnInit {
                 // $("#contain_" + field).hide();
                 var field = generateField();
                 $.ajax({
-                    url: "http://10.89.49.10:8093/getComponents",
-                    type: "GET",
+                    url: api + "getComponents",
+                    type: "POST",
                     dataType: "json",
                     success: function (data) {
                         $.each(data[3].validations, function (key, item) {
@@ -247,6 +280,7 @@ export class Build2Component implements OnInit {
 
                     var model = {
                         question_id: null,
+                        status: 1,
                         section_id: null,
                         question_subtype_id: 23,
                         text: $("#title_" + field).val(),
@@ -359,8 +393,8 @@ export class Build2Component implements OnInit {
 
                 var field = generateField();
                 $.ajax({
-                    url: "http://10.89.49.10:8093/getComponents",
-                    type: "GET",
+                    url: api + "getComponents",
+                    type: "POST",
                     dataType: "json",
                     success: function (data) {
                         $.each(data[2].validations, function (key, item) {
@@ -437,6 +471,7 @@ export class Build2Component implements OnInit {
                         alias: $(".p" + field).find(".child").html(),
                         position: $(".p" + field).find(".po").html(),
                         level: 1,
+                        status: 1,
                         validations: validations
                     };
 
@@ -551,8 +586,8 @@ export class Build2Component implements OnInit {
                 var opt1 = generateField();
 
                 $.ajax({
-                    url: "http://10.89.49.10:8093/getComponents",
-                    type: "GET",
+                    url: api + "getComponents",
+                    type: "POST",
                     dataType: "json",
                     success: function (data) {
                         $.each(data[0].validations, function (key, item) {
@@ -743,15 +778,15 @@ export class Build2Component implements OnInit {
                     '                    <input type="text" name="inventario" class="form-control form_input_label" placeholder="Texto informativo" /> ' +
                     '                </div>' +
                     '             </div> ' +
-                    //    '             <div class="col-md-12">'+
-                    //    '                 <div class="form-group">'+
-                    //    '                     <div class="mt-radio-list radio_list_' + field + '"><label class="mt-radio mt-radio-outline">'+
-                    //    '                             <input data-opt="' + opt1 + '" type="radio" name="radio_' + field + '" value="Value">'+
-                    //    '                             <p class="r_opt_name_' + opt1 + '" style="color:#fff;">Opción</p><span></span>'+
-                    //    '                         </label></div>'+
-                    //    '                 </div>'+
-                    //    '             </div>'+
-                    //    '         </div>'+
+                       '             <div class="col-md-12" style="display:none;">'+
+                       '                 <div class="form-group">'+
+                       '                     <div class="mt-radio-list radio_list_' + field + '"><label class="mt-radio mt-radio-outline">'+
+                       '                             <input data-opt="' + opt1 + '" type="radio" name="radio_' + field + '" value="Value">'+
+                       '                             <p class="r_opt_name_' + opt1 + '" style="color:#fff;">Opción</p><span></span>'+
+                       '                         </label></div>'+
+                       '                 </div>'+
+                       '             </div>'+
+                       '         </div>'+
                     '         <div  class="row li_row">' +
                     '             <div class="col-md-12">' +
                     '                 <div  id="father_' + field + '" class="field_extra_info_' + field + ' ">' +
@@ -791,8 +826,8 @@ export class Build2Component implements OnInit {
                 var field = generateField();
                 var opt1 = generateField();
                 $.ajax({
-                    url: "http://10.89.49.10:8093/getComponents",
-                    type: "GET",
+                    url: api + "getComponents",
+                    type: "POST",
                     dataType: "json",
                     success: function (data) {
                         $.each(data[1].validations, function (key, item) {
@@ -897,6 +932,7 @@ export class Build2Component implements OnInit {
 
                     var model = {
                         question_id: null,
+                        status: 1,
                         section_id: null,
                         question_subtype_id: 20,
                         text: $("#title_" + field).val(),
@@ -993,6 +1029,13 @@ export class Build2Component implements OnInit {
                     '                       <input type="text" name="inventario" class="form-control form_input_label" placeholder="Texto informativo" /> ' +
                     '               </div>' +
                     '        </div> ' +
+                    '        <div class="col-md-12" style="display:none;">'+
+                    '           <div class="form-group">'+
+                    '               <div class="mt-checkbox-list checkbox_list_' + field + '"><label class="mt-checkbox mt-checkbox-outline"><input data-opt="' + opt1 + '" type="checkbox" name="checkbox_' + field + '" value="Value">'+
+                    '               <p class="c_opt_name_' + opt1 + '">Opción</p><span></span>'+
+                    '               </label></div>'+
+                    '           </div>'+
+                    '       </div>'+
                     '        <div class="col-md-12">' +
                     '               <div id="input_' + field + '"></div>' +
                     '        </div>' +
@@ -1376,8 +1419,8 @@ export class Build2Component implements OnInit {
 
 
 
-    getCoCatalog(): void {
-        this.configService.getData().subscribe(data => {
+    getCoCatalog(postData): void {
+        this.configService.getData(postData).subscribe(data => {
             this.dataModel = data;
             console.log(this.dataModel);
         })

@@ -10,12 +10,12 @@ export class HeroService {
 
   public classMenu: String;
   
-   private urlAPI:string = 'http://10.89.49.10:8093/getComponents';
+   private urlAPI:string = 'http://10.89.49.10:8091/getComponents';
 
   constructor(private http: HttpClient) {  }
 
-  getData(): Observable<CoCatalog[]>{
-    return this.http.get<CoCatalog[]>(this.urlAPI);
+  getData(postData): Observable<CoCatalog[]>{
+    return this.http.post<CoCatalog[]>(this.urlAPI, postData);
     
   }
   openMenu() {

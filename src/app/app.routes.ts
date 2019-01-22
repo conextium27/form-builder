@@ -15,7 +15,7 @@ const appRoutes: Routes = [
     { path: 'build', component: BuildComponent},
     { path: 'panel', component: PanelsurveyComponent},
 
-    { path: '**', pathMatch: 'full', redirectTo: 'index' }
+    { path: '**', pathMatch: 'full', redirectTo: 'panel' }
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);
