@@ -49,51 +49,27 @@ export class Build2Component implements OnInit {
 
     ngOnInit() {
         this.configService.classMenu = 'close_nav';
+        let encuesta: any;
 
         $(document).ready(function () {
-            var encuesta: any = {};
-            var data = [];
+            encuesta = JSON.parse(localStorage.getItem("itemsArray"));
 
-            var d = new Date();
-
-            var month = d.getMonth() + 1;
-            var day = d.getDate();
-
-            var output = d.getFullYear() + '-' +
-                (('' + month).length < 2 ? '0' : '') + month + '-' +
-                (('' + day).length < 2 ? '0' : '') + day;
-
-            encuesta = {
-                "survey_id": null,
-                "survey_type_id": 2,
-                "status": 1,
-                "name": "Test Zeus",
-                "creation_date": output,
-                "environment": 2,
-                "locked_user_id": 777,
-                "owner_id": 4,
-                "platform": 7,
-                "sections": [
-                    {
-                        "section_id": null,
-                        "survey_id": null,
-                        "title": "Sección I",
-                        "alias": "S1",
-                        "position": 1,
-                        "status": 1,
-                        "questions": []
-                    }
-                ]
-
-            };
-
-            data.push(encuesta);
-            localStorage.setItem('itemsArray', JSON.stringify(data));
-
-            $('#main-area').bind("mouseenter mouseleave", function (i) {
-                countparent(i);
+            $('#main-area').bind("mouseenter mouseleave", function () {
             });
 
+            function answerPosition(){
+                        $("#main-area").children("div").each(function (i) {
+                            $(this).find(".q").html("Pregunta " + (++i))
+                        });
+
+            }
+            
+            function countPosition (){
+                    $("#main-area").children("div").each(function (i) {
+                        $(this).find(".po").html((i++))
+                    });
+            }
+           
             $("#25").draggable({
                 helper: function () {
                     return getTitleFieldHTML();
@@ -119,27 +95,27 @@ export class Build2Component implements OnInit {
                 connectToSortable: ".form_builder_area"
             });
 
-            var color ={
-                "color": "#CCC"
-            }
 
             $(".form_builder_area").sortable({
                 cursor: 'move',
-                placeholder: "placeholder",
+                placeholder: "placeholder", 
                 addClasses: true,
                 start: function (e, ui) {
                     ui.placeholder.height(ui.helper.outerHeight());
+                    countPosition();
+                    answerPosition();
                 },
                 stop: function (ev, ui) {
                     getPreview();
+                    countPosition();
+                    answerPosition();
                 }
             });
             $(".form_builder_area").disableSelection();
-            function countparent(field) {
-                $("#main-area").children("div").each(function (i) {
-                    $(this).find(".child").html("Q" + (++i))
-                });
-            }
+            // function countparent(field) {
+                
+            //     console.log($("#main-area").children("div").find(".child").length);
+            // }
 
 
             $("#sendSurvey").on("click", function () {
@@ -178,7 +154,7 @@ export class Build2Component implements OnInit {
                     }
                 });
 
-                // localStorage.clear();                                          
+                localStorage.clear();                                          
             });
             function getHeader(type, field) {
                 var icon = ""
@@ -197,16 +173,23 @@ export class Build2Component implements OnInit {
                     icon = '<i class="far fa-comment"></i>'
                     text = "Texto informativo"
                 }
+                var count = getNumberQuestion()
                 return '<div class="row"> ' +
-                    '<div class="col-2 p' + field + '" class="col-2 "> ' +
-                    '<h5 class="child"></h5>' +
-                    '</div>' +
-                    '<div class="col-8">' + icon + ' ' + text + '</div>' +
-                    '<div class="col-2">' +
-                    '<button type="button"  class="btn btn-danger btn-sm remove_bal_field pull-right" data-field="' + field + '"><i class="fa fa-times"></i></button> ' +
-                    '<button type="button"  style="position: relative; right: 8px" class="btn btn-success edit_bal_field btn-sm pull-right" data-field="' + field + '"><i class="fa fa-edit"></i></button> ' +
-                    '</div>' +
-                    '</div>'
+                       '    <div class="col-2 p' + field + '" class="col-2 "> ' +
+                       '        <span class="child" style="display:none;">Q'+count+'</span>' +
+                       '        <span class="q" style="font-size: 8pt"></span>' +
+                       '        <span class="po" style="display:block;"></span>' +
+                       '    </div>' +
+                       '    <div class="col-8">' + icon + ' ' + text + '</div>' +
+                       '    <div class="col-2">' +
+                       '    <button type="button"  class="btn btn-danger btn-sm remove_bal_field pull-right" data-field="' + field + '"><i class="fa fa-times"></i></button> ' +
+                       '    <button type="button"  style="position: relative; right: 8px" class="btn btn-success edit_bal_field btn-sm pull-right" data-field="' + field + '"><i class="fa fa-edit"></i></button> ' +
+                       '    </div>' +
+                       '</div>'
+            }
+            function getNumberQuestion() {
+                // return $("#main-area").children().length + 1
+                return $("#main-area").children("div").find(".child").length + 1
             }
             function getTitleFieldHTML() {
                 // $("#contain_" + field).hide();
@@ -236,6 +219,8 @@ export class Build2Component implements OnInit {
                     }
                 });
 
+              
+
                 $(document).ready(function () {
                 }).one("submit", ".sendText_" + field, function (e) {
                     e.preventDefault();
@@ -244,6 +229,7 @@ export class Build2Component implements OnInit {
                     var test = localStorage.getItem("informativeText" + field);
                     var validations = [];
                     var listForm = [];
+                   
                     $("input[name^='selector" + field + "']").each(function () {
                         // $("input[type=checkbox]").each(function(){
                         if (this.checked) {
@@ -251,12 +237,12 @@ export class Build2Component implements OnInit {
                         }
                     });
 
-                    if(  $('#check_'+field).find("#20").checked ){
-                            console.log("true");
+                    // if(  $('#check_'+field).find("#20").checked ){
+                    //         console.log("true");
 
-                    }else{
-                        console.log("false");
-                    }
+                    // }else{
+                    //     console.log("false");
+                    // }
 
 
                     var model = {
@@ -266,11 +252,12 @@ export class Build2Component implements OnInit {
                         text: $("#title_" + field).val(),
                         instructions: null,
                         alias: $(".p" + field).find(".child").html(),
-                        position: 1,
+                        position: $(".p" + field).find(".po").html(),
                         level: 1,
                         validations: validations
                     };
 
+                    
                     encuesta.sections[0].questions.push(model);
                     localStorage.setItem("itemsArray", JSON.stringify(encuesta));
 
@@ -448,12 +435,12 @@ export class Build2Component implements OnInit {
                         text: $("#title_" + field).val(),
                         instructions: null,
                         alias: $(".p" + field).find(".child").html(),
-                        position: 1,
+                        position: $(".p" + field).find(".po").html(),
                         level: 1,
                         validations: validations
                     };
 
-                    console.log(model);
+                    // console.log(model);
 
                     encuesta.sections[0].questions.push(model);
                     localStorage.setItem("itemsArray", JSON.stringify(encuesta));
@@ -474,7 +461,7 @@ export class Build2Component implements OnInit {
                     $("#contain_" + field).hide();
                 });
 
-                var html = '<div class="all_div">' +
+                var html = '<div class="all_div" style="z-index:2">' +
                     '<div class="row li_row" >' +
                     '<div class="col-12" >'
                     + getHeader(1, field) +
@@ -621,7 +608,7 @@ export class Build2Component implements OnInit {
                                 alias: "A1",
                                 value: value[0],
                                 icon: null,
-                                position: 1,
+                                position: 0,
                                 status: 1
                             });
                         }
@@ -645,7 +632,7 @@ export class Build2Component implements OnInit {
                                 alias: $(this).data('alias'),
                                 value: valueR_[i],
                                 icon: null,
-                                position: 1,
+                                position: $(this).data('r'),
                                 status: 1
                             });
                         }
@@ -660,7 +647,7 @@ export class Build2Component implements OnInit {
                         text: $("#title_" + field).val(),
                         instructions: null,
                         alias: $(".p" + field).find(".child").html(),
-                        position: 3,
+                        position: $(".p" + field).find(".po").html(),
                         level: 0,
                         status: 1,
                         answerOptions: answerOptions,
@@ -865,7 +852,7 @@ export class Build2Component implements OnInit {
                                 alias: "A1",
                                 value: value[0],
                                 icon: null,
-                                position: 1,
+                                position: 0,
                                 status: 1
                             });
                         }
@@ -888,7 +875,7 @@ export class Build2Component implements OnInit {
                                 alias: $(this).data('aliasm'),
                                 value: valueM_[i],
                                 icon: null,
-                                position: 1,
+                                position: $(this).data('m'),
                                 status: 1
                             });
                         }
@@ -915,7 +902,7 @@ export class Build2Component implements OnInit {
                         text: $("#title_" + field).val(),
                         instructions: null,
                         alias: $(".p" + field).find(".child").html(),
-                        position: 3,
+                        position: $(".p" + field).find(".po").html(),
                         level: 1,
                         answerOptions: answerOptions,
                         validations: validations
@@ -1054,6 +1041,7 @@ export class Build2Component implements OnInit {
                 $(this).closest('.form_builder_field').css('height', 'auto');
                 var field = $(this).attr('data-field');
                 var count = $("#father_" + field).find(".answerChild_" + field).length + 2;
+                var countR = $("#father_" + field).find(".answerChild_" + field).length + 1;
                 var option = generateField();
                 $('.field_extra_info_' + field).append(
                     '<div  data-opt="' + option + '" data-field="' + field + '" class="row radio_row_' + field + '">' +
@@ -1065,12 +1053,12 @@ export class Build2Component implements OnInit {
                     '   </div>' +
                     '   <div class="col-md-4">' +
                     '       <div class="form-group">' +
-                    '           <input id="optionR_' + field + '" data-alias="A' + count + '" name="optionR_' + field + '[]" type="text" value="" placeholder="rick"  class="r_opt form-control"/>' +
+                    '           <input id="optionR_' + field + '" data-r="'+countR+'" data-alias="A' + count + '" name="optionR_' + field + '[]" type="text" value="" placeholder="Opción"  class="r_opt form-control"/>' +
                     '        </div>' +
                     '    </div>' +
                     '    <div class="col-md-4">' +
                     '        <div class="form-group">' +
-                    '            <input id="valueR_' + field + ' " name="valueR_' + field + '[]" type="number" value="" placeholder="stark" class="r_val form-control"/>' +
+                    '            <input id="valueR_' + field + ' " name="valueR_' + field + '[]" type="number" value="" placeholder="Valor" class="r_val form-control"/>' +
                     '        </div>' +
                     '    </div>' +
                     '    <div class="" style="position: absolute; right: 0px; padding-top: 5px;">' +
@@ -1095,6 +1083,7 @@ export class Build2Component implements OnInit {
                 $(this).closest('.form_builder_field').css('height', 'auto');
                 var field = $(this).attr('data-field');
                 var count = $("#father_" + field).find(".answerChild_" + field).length + 2;
+                var countM = $("#father_" + field).find(".answerChild_" + field).length + 1;
                 var option = generateField();
                 $('.field_extra_info_' + field).append(
                     '<div data-opt="' + option + '" data-field="' + field + '" class="row checkbox_row_' + field + '">' +
@@ -1106,7 +1095,7 @@ export class Build2Component implements OnInit {
                     '   </div>' +
                     '   <div class="col-md-4">' +
                     '       <div class="form-group">' +
-                    '           <input id="optionM_' + field + '" data-aliasM="A'+count+'" name="optionM_' + field + '[]" type="text" value="" placeholder="Opción" class="c_opt form-control"/>' +
+                    '           <input id="optionM_' + field + '" data-m="'+countM+'" data-aliasM="A'+count+'" name="optionM_' + field + '[]" type="text" value="" placeholder="Opción" class="c_opt form-control"/>' +
                     '       </div>' +
                     '   </div>' +
                     '   <div class="col-md-4">' +
