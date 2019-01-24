@@ -9,9 +9,8 @@ import { CoCatalog } from '../../models/co-catalog';
 export class HeroService {
 
   public classMenu: String;
-  
-   private urlAPI:string = 'http://10.89.49.10:8091/getComponents';
-
+   private urlAPI:string = 'https://gc408kjsd9.execute-api.us-east-1.amazonaws.com/dev/';
+  //  private urlAPI:string = 'http://10.89.49.10:8091/getComponents';
   constructor(private http: HttpClient) {  }
 
   getData(postData): Observable<CoCatalog[]>{

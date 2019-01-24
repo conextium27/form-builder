@@ -50,7 +50,8 @@ export class Build2Component implements OnInit {
     ngOnInit() {
         this.configService.classMenu = 'close_nav';
         let encuesta: any;
-        let api = "http://10.89.49.10:8091/";
+        let api = "https://gc408kjsd9.execute-api.us-east-1.amazonaws.com/dev/";
+        // let api = "http://10.89.49.10:8091/";
 
         $(document).ready(function () {
 

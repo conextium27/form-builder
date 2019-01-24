@@ -45,7 +45,8 @@ export class PanelsurveyComponent implements OnInit {
 
     ]).then((result) => {
       if (result.value) {
-        var api = "http://10.89.49.10:8091/";
+        // var api = "http://10.89.49.10:8091/";
+        var api = "https://gc408kjsd9.execute-api.us-east-1.amazonaws.com/dev/";
         var nameSurvey = result.value[0];
         var survey: any = {};
         var data = [];
